@@ -16,12 +16,12 @@ public class Map {
 
     private int[][] map; //0 is empty 1 is taken
 
-    public Map(String path) { //Creates a map from a file location
+    public Map(File f) { //Creates a map from a file location
         
         ArrayList<Integer> spots = new ArrayList<>();
 
         try {
-            InputStreamReader reader = new InputStreamReader(new FileInputStream(new File(path)));
+            InputStreamReader reader = new InputStreamReader(new FileInputStream(f));
             int next = reader.read();
             int rows = 0;
             int cols = 0;

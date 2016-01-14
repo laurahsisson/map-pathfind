@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JComponent;
 import java.awt.Graphics;
 import java.awt.Color;
+import java.util.Scanner;
+import java.io.File;
 
 /**
  *
@@ -18,8 +20,17 @@ public class PathFind extends JComponent {
     public static long startTime;
 
     public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter the file you would like to open (No extension). Ex: map1 map2 map3");
+        File f = new File(sc.next() + ".txt");
+        if (!f.exists()) {
+            System.out.println("Invalid file!");
+            return;
+        }
         startTime = java.lang.System.currentTimeMillis();
-        map = new Map("map1.txt");
+        map = new Map(f);
+        System.out.println("Starting algorithm");
         PathFind pf = new PathFind(map);
         ArrayList<Node> path = pf.doIterator(); //Main algorithm
         System.out.println("Solved in: " + (java.lang.System.currentTimeMillis() - startTime) / 1000f + " seconds!");
